@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  background-color: #353535;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  width: 90%;
+}
+
+.photos-tiles {
+  width: 100%;
+  height: 250px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  transform-style: preserve-3d;
+  transform: perspective(10000px);
+}
+
+.photo-item {
+  background-color: red;
+  height: 100%;
+  width: 9%;
+}
+
+.photo-item img {
+  width: 100%;
+  height: 100%;
+}
+
+.photo-item {
+  transition: 0.5s;
+  filter: brightness(0);
+}
+
+.photo-item:hover {
+  filter: brightness(1);
+  transform: translateZ(200px);
+}
+
+.photo-item:hover + * {
+  filter: brightness(0.6);
+  transform: translateZ(150px) rotateY(40deg);
+}
+
+.photo-item:hover + * + * {
+  filter: brightness(0.4);
+  transform: translateZ(70px) rotateY(30deg);
+}
+
+.photo-item:hover + * + * + * {
+  filter: brightness(0.2);
+  transform: translateZ(30px) rotateY(10deg);
+}
+
+.photo-item:has(+ *:hover) {
+  filter: brightness(0.6);
+  transform: translateZ(150px) rotateY(-40deg);
+}
+
+.photo-item:has(+ * + *:hover) {
+  filter: brightness(0.4);
+  transform: translateZ(70px) rotateY(-30deg);
+}
+
+.photo-item:has(+ * + * + *:hover) {
+  filter: brightness(0.2);
+  transform: translateZ(30px) rotateY(-10deg);
+}
